@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+    <!--Waypoint Loader -->
+    <include file="$(find waypoint_loader)/launch/waypoint_loader.launch"/>
+
+
+    <!--Waypoint Updater Node -->
+    <include file="$(find waypoint_updater)/launch/waypoint_updater.launch"/>
+
+    <!-- Odom relay to Twist -->
+    <node pkg="path_follow" type="odom_relay" name="odom_relay" output="screen"/>
+    
+  <node pkg="path_follow" type="path_follow" name="path_follow" output="screen">
+    <param name="curve_fit" value="false" />
+    <param name="adaptive_lookahead" value="false" />
+    <param name="configure_velocity" value="true" />
+    <param name="velocity" value="5.5" />
+    <param name="kp" value="0.6" />
+    <param name="ki" value="0.0" />
+    <param name="k_ld" value="0.0" />
+    <param name="lh" value="4" />
+  </node>
+    
+</launch>
